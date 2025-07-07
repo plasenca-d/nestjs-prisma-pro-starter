@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - next # For pre-releases
+env:
+  HUSKY: 0
 
 jobs:
   release:
