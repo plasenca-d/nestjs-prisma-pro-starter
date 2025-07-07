@@ -1,10 +1,31 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    LoggerModule.forRoot(),
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          name: 'standard',
+          ttl: 60000,
+          limit: 10,
+        },
+        {
+          name: 'short',
+          ttl: 10000,
+          limit: 2,
+        },
+        {
+          name: 'burst',
+          ttl: 1000,
+          limit: 5,
+        },
+      ],
+    }),
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
