@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/plasenca-d/nestjs-prisma-pro-starter/compare/v1.0.0...v1.1.0) (2025-07-25)
+
+
+### Features
+
+* add config ([38fde18](https://github.com/plasenca-d/nestjs-prisma-pro-starter/commit/38fde18d9d2e8c5f013f2cafe2e524a2da06e6be))
+* implementt prisma db connection ([54628f3](https://github.com/plasenca-d/nestjs-prisma-pro-starter/commit/54628f3515b813243571f2a56e4ac2c0c207d67a))
+
 # 1.0.0 (2025-07-07)
 
 
