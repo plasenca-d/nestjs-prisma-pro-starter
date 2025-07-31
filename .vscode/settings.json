@@ -5,5 +5,12 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
     "source.organizeImports": "always"
-  }
+  },
+  "cSpell.words": [
+    "msword",
+    "officedocument",
+    "openxmlformats",
+    "spreadsheetml",
+    "wordprocessingml"
+  ]
 }
