@@ -44,7 +44,7 @@ export default registerAs<JWTConfig>('jwt', () => {
     audience: process.env.JWT_AUDIENCE || 'nestjs-prisma-pro-starter',
 
     // Cookies(optional)
-    cookies: {
+    cookie: {
       name: process.env.JWT_COOKIE_NAME || 'access_token',
       httpOnly: process.env.JWT_COOKIE_HTTP_ONLY === 'true',
       secure: process.env.JWT_COOKIE_SECURE === 'true',
@@ -58,7 +58,7 @@ export default registerAs<JWTConfig>('jwt', () => {
       redisPrefix: process.env.JWT_BLACKLIST_PREFIX || 'jwt_blacklist:',
       userPrefix: process.env.JWT_USER_PREFIX || 'user_',
       globalPrefix: process.env.JWT_GLOBAL_PREFIX || 'global_',
-      trackReasons: process.env.JWT_TRACK_REASONS === 'true',
+      trackReason: process.env.JWT_TRACK_REASONS === 'true',
       criticalOnly: process.env.JWT_CRITICAL_ONLY === 'true',
     },
   };

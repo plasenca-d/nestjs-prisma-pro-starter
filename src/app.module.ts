@@ -1,9 +1,32 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
+import {
+  appConfig,
+  configValidationSchema,
+  databaseConfig,
+  jwtConfig,
+  mailConfig,
+  redisConfig,
+  storageConfig,
+} from './config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: configValidationSchema,
+      load: [
+        appConfig,
+        databaseConfig,
+        jwtConfig,
+        mailConfig,
+        redisConfig,
+        storageConfig,
+      ],
+      expandVariables: true,
+    }),
     LoggerModule.forRoot(),
     ThrottlerModule.forRoot({
       throttlers: [
