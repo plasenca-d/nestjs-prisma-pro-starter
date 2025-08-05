@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
+import { ExceptionFiltersModule } from './common/filters';
 import {
   appConfig,
   configValidationSchema,
@@ -14,6 +15,7 @@ import {
 
 @Module({
   imports: [
+    ExceptionFiltersModule,
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: configValidationSchema,

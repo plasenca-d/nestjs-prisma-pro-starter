@@ -35,6 +35,7 @@
   "private": false,
   "license": "MIT",
   "scripts": {
+    "db:generate": "pnpm dlx prisma generate",
     "migrate:dev": "prisma migrate dev",
     "migrate:prod": "prisma migrate deploy",
     "seed:dev": "prisma db seed",
