@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/plasenca-d/nestjs-prisma-pro-starter/compare/v1.2.0...v1.3.0) (2025-08-05)
+
+
+### Features
+
+* **common:** implement filters and custom exceptions ([725ceb4](https://github.com/plasenca-d/nestjs-prisma-pro-starter/commit/725ceb45abc9cfa3395a38bd4401ab6b4f5388d3))
+
 # [1.2.0](https://github.com/plasenca-d/nestjs-prisma-pro-starter/compare/v1.1.0...v1.2.0) (2025-07-31)
 
 
