@@ -15,9 +15,13 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(uuid())
+  id        String   @id @default(uuid())
   email     String   @unique
   password  String
+  firstName String?
+  lastName  String?
+  avatar    String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -26,4 +30,23 @@ model User {
   deletedBy User? @relation("UserDeletedBy", fields: [deletedById], references: [id])
   deletedById String?
   deletedUsers User[] @relation("UserDeletedBy")
+
+  roles Role[] @relation("RoleDeletedBy")
+
+  @@map("users")
+}
+
+model Role {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  permissions Json   @default("[]")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  deletedBy User? @relation("RoleDeletedBy", fields: [deletedById], references: [id])
+  deletedById String?
+  
+  @@map("roles")
 }
