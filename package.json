@@ -76,8 +76,10 @@
     "joi": "^17.13.3",
     "nestjs-pino": "^4.4.0",
     "pino-http": "^10.5.0",
+    "prisma-extension-soft-delete": "^2.0.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

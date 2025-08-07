@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
 import { ExceptionFiltersModule } from './common/filters';
+import { InterceptorsModule } from './common/interceptors';
 import {
   appConfig,
   configValidationSchema,
@@ -15,6 +16,7 @@ import {
 
 @Module({
   imports: [
+    InterceptorsModule,
     ExceptionFiltersModule,
     ConfigModule.forRoot({
       isGlobal: true,

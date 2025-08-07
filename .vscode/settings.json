@@ -7,10 +7,15 @@
     "source.organizeImports": "always"
   },
   "cSpell.words": [
+    "metatype",
     "msword",
     "officedocument",
     "openxmlformats",
+    "schemaname",
     "spreadsheetml",
+    "tablename",
+    "tablenames",
+    "uuidv",
     "wordprocessingml"
   ]
 }

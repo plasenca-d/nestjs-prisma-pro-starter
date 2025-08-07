@@ -15,9 +15,15 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(uuid())
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  deletedAt DateTime?
+  
+  deletedBy User? @relation("UserDeletedBy", fields: [deletedById], references: [id])
+  deletedById String?
+  deletedUsers User[] @relation("UserDeletedBy")
 }

@@ -46,12 +46,18 @@ importers:
       pino-http:
         specifier: ^10.5.0
         version: 10.5.0
+      prisma-extension-soft-delete:
+        specifier: ^2.0.1
+        version: 2.0.1(@prisma/client@6.12.0(prisma@6.12.0(typescript@5.8.3))(typescript@5.8.3))
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -1454,6 +1460,12 @@ packages:
     resolution:
       {
         integrity: sha512-1y6DgTy8Jomcpu33N+p5w58l6xyt55Ar2I91RPiIA0xCJBXyUAhXCcmZaDWSANiha7R9a6qJJ2CRomGPZ6f46g==,
+      }
+
+  '@open-draft/deferred-promise@2.2.0':
+    resolution:
+      {
+        integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==,
       }
 
   '@paralleldrive/cuid2@2.2.2':
@@ -6401,6 +6413,22 @@ packages:
       }
     engines: { node: '>=18' }
 
+  prisma-extension-nested-operations@1.0.1:
+    resolution:
+      {
+        integrity: sha512-mjMfVUplwCkrdClTqRP4793dOdPfT/H0zvV2uQ2R1BG2ZAqJ4LUEf//7f9LJdV5GhSOhp72w6b7DKJg1xIkgVA==,
+      }
+    peerDependencies:
+      '@prisma/client': '*'
+
+  prisma-extension-soft-delete@2.0.1:
+    resolution:
+      {
+        integrity: sha512-vozIlrmUr2RWgXNjWBn6yHWAZ4hBjskyJM0TCH66jKjkeGf8jfLhrIyO0FB4JlPMtuNeyyFVOVIg8yEjxbQH9Q==,
+      }
+    peerDependencies:
+      '@prisma/client': '*'
+
   prisma@6.12.0:
     resolution:
       {
@@ -7697,6 +7725,13 @@ packages:
         integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==,
       }
 
+  uuid@11.1.0:
+    resolution:
+      {
+        integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==,
+      }
+    hasBin: true
+
   v8-compile-cache-lib@3.0.1:
     resolution:
       {
@@ -8918,6 +8953,8 @@ snapshots:
   '@octokit/types@14.1.0':
     dependencies:
       '@octokit/openapi-types': 25.1.0
+
+  '@open-draft/deferred-promise@2.2.0': {}
 
   '@paralleldrive/cuid2@2.2.2':
     dependencies:
@@ -11993,6 +12030,17 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
+  prisma-extension-nested-operations@1.0.1(@prisma/client@6.12.0(prisma@6.12.0(typescript@5.8.3))(typescript@5.8.3)):
+    dependencies:
+      '@open-draft/deferred-promise': 2.2.0
+      '@prisma/client': 6.12.0(prisma@6.12.0(typescript@5.8.3))(typescript@5.8.3)
+      lodash: 4.17.21
+
+  prisma-extension-soft-delete@2.0.1(@prisma/client@6.12.0(prisma@6.12.0(typescript@5.8.3))(typescript@5.8.3)):
+    dependencies:
+      '@prisma/client': 6.12.0(prisma@6.12.0(typescript@5.8.3))(typescript@5.8.3)
+      prisma-extension-nested-operations: 1.0.1(@prisma/client@6.12.0(prisma@6.12.0(typescript@5.8.3))(typescript@5.8.3))
+
   prisma@6.12.0(typescript@5.8.3):
     dependencies:
       '@prisma/config': 6.12.0
@@ -12770,6 +12818,8 @@ snapshots:
   url-join@5.0.0: {}
 
   util-deprecate@1.0.2: {}
+
+  uuid@11.1.0: {}
 
   v8-compile-cache-lib@3.0.1: {}
 
