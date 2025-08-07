@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/plasenca-d/nestjs-prisma-pro-starter/compare/v1.3.0...v1.4.0) (2025-08-07)
+
+
+### Features
+
+* add health configuration ([e638e69](https://github.com/plasenca-d/nestjs-prisma-pro-starter/commit/e638e6986e39afaf574d8e5db03eb44d25c811ef))
+* implement prisma configuration ([1bb3b0e](https://github.com/plasenca-d/nestjs-prisma-pro-starter/commit/1bb3b0ed4e8b624222b1482cc768ac8c69cc0b85))
+
 # [1.3.0](https://github.com/plasenca-d/nestjs-prisma-pro-starter/compare/v1.2.0...v1.3.0) (2025-08-05)
 
 
