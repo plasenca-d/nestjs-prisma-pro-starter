@@ -139,7 +139,7 @@ export class PrismaService
     return this.$extends(softDeleteExtension);
   }
 
-  async softDelete<T extends Record<string, any>>(
+  async softDelete<T>(
     model: string,
     where: any,
     deletedBy?: string,
@@ -190,10 +190,7 @@ export class PrismaService
     });
   }
 
-  async restore<T extends Record<string, any>>(
-    model: string,
-    where: any,
-  ): Promise<T> {
+  async restore<T>(model: string, where: any): Promise<T> {
     const modelDelegate = this[model];
     if (!modelDelegate) {
       throw new Error(`Model ${model} not found`);

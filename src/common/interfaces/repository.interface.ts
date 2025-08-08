@@ -1,28 +1,63 @@
 import { PaginatedResponse } from '../types/api-response.types';
-import { FindManyOptions, QueryOptions } from '../types/database.types';
 import { PaginationQuery } from '../types/pagination.types';
+import {
+  GetCreateInput,
+  GetIncludeInput,
+  GetOrderByInput,
+  GetSelectInput,
+  GetUpdateInput,
+  GetWhereInput,
+  ModelName,
+  TransactionCallback,
+} from '../types/repository.types';
 
-export interface IBaseRepository<T, CreateDto, UpdateDto> {
-  create(data: CreateDto): Promise<T>;
-  findById(id: string, options?: QueryOptions): Promise<T | null>;
-  findOne(where: any, options?: QueryOptions): Promise<T | null>;
-  findMany(options?: FindManyOptions): Promise<T[]>;
-  findManyPaginated(
+export interface IBaseRepository<
+  T extends ModelName,
+  CreateInput = GetCreateInput<T>,
+  UpdateInput = GetUpdateInput<T>,
+  WhereInput = GetWhereInput<T>,
+  SelectInput = GetSelectInput<T>,
+  IncludeInput = GetIncludeInput<T>,
+  OrderByInput = GetOrderByInput<T>,
+> {
+  create(data: CreateInput): Promise<T>;
+  findById(
+    id: string,
+    options?: {
+      select?: SelectInput;
+      include?: IncludeInput;
+    },
+  ): Promise<T | null>;
+  findOne(where: WhereInput): Promise<T | null>;
+  findMany(options?: {
+    where?: WhereInput;
+    select?: SelectInput;
+    include?: IncludeInput;
+    orderBy?: OrderByInput;
+    skip?: number;
+    take?: number;
+  }): Promise<T[]>;
+  findWithPagination(
+    where: WhereInput,
     pagination: PaginationQuery,
-    options?: FindManyOptions,
+    options?: {
+      select?: SelectInput;
+      include?: IncludeInput;
+      orderBy?: OrderByInput;
+    },
   ): Promise<PaginatedResponse<T>>;
 
-  update(id: string, data: UpdateDto): Promise<T>;
-  updateMany(where: any, data: Partial<UpdateDto>): Promise<number>;
+  update(id: string, data: UpdateInput): Promise<T>;
+  updateMany(where: WhereInput, data: Partial<UpdateInput>): Promise<number>;
 
   delete(id: string, soft?: boolean): Promise<T>;
-  deleteMany(where: any, soft?: boolean): Promise<number>;
+  deleteMany(where: WhereInput, soft?: boolean): Promise<number>;
 
-  // Special methods
-  count(where?: any): Promise<number>;
-  exists(where: any): Promise<boolean>;
+  count(where?: WhereInput): Promise<number>;
+  exists(where: WhereInput): Promise<boolean>;
   restore(id: string): Promise<T>; // For soft deletes
 
-  // Transactions
-  transaction<R>(callback: (tx: any) => Promise<R>): Promise<R>;
+  executeInTransaction<TResult>(
+    callback: TransactionCallback<TResult>,
+  ): Promise<TResult>;
 }

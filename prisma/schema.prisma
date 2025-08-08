@@ -32,12 +32,21 @@ model User {
   deletedUsers User[] @relation("UserDeletedBy")
 
   roles Role[] @relation("RoleDeletedBy")
+  userRoles UserRole[] @relation("UserRoleUser")
+  sessions UserSession[] @relation("UserSessionUser")
+  files File[] @relation("FileUploadedBy")
+
+
+
 
   @@map("users")
+  @@index([email])
+  @@index([createdAt])
+  @@index([deletedAt])
 }
 
 model Role {
-  id          String @id @default(cuid())
+  id          String @id @default(uuid())
   name        String @unique
   description String?
   permissions Json   @default("[]")
@@ -47,6 +56,99 @@ model Role {
   deletedAt DateTime?
   deletedBy User? @relation("RoleDeletedBy", fields: [deletedById], references: [id])
   deletedById String?
+
+  userRoles UserRole[] @relation("UserRoleRole")
+
   
   @@map("roles")
+}
+
+model UserRole {
+  id     String @id @default(uuid())
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation("UserRoleUser", fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  role Role @relation("UserRoleRole", fields: [roleId], references: [id], onDelete: Cascade)
+  roleId String
+  
+  @@unique([userId, roleId])
+  @@map("user_roles")
+}
+
+model UserSession {
+  id           String    @id @default(cuid())
+  refreshToken String    @unique
+  ipAddress    String?
+  userAgent    String?
+  isActive     Boolean   @default(true)
+  expiresAt    DateTime
+  lastUsedAt   DateTime  @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  
+  user User @relation("UserSessionUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  userId       String
+  
+  @@map("user_sessions")
+  @@index([userId])
+  @@index([refreshToken])
+  @@index([expiresAt])
+}
+
+model AuditLog {
+  id         String    @id @default(uuid())
+  entityType String
+  entityId   String
+  action     String // CREATE, UPDATE, DELETE, etc.
+  oldValues  Json?
+  newValues  Json?
+  userId     String?
+  ipAddress  String?
+  userAgent  String?
+  timestamp  DateTime  @default(now())
+  
+  @@map("audit_logs")
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@index([timestamp])
+}
+
+model File {
+  id           String @id @default(uuid())
+  originalName String
+  filename     String
+  mimetype     String
+  size         Int
+  path         String
+  url          String
+  bucket       String
+  key          String
+  
+  entityType String
+  entityId   String?
+  alt        String?
+  caption    String?
+  
+  width  Int?
+  height Int?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  
+  uploadedById String
+  uploadedBy User  @relation("FileUploadedBy", fields: [uploadedById], references: [id], onDelete: Cascade)
+
+  
+  @@map("files")
+  @@index([entityType, entityId])
+  @@index([uploadedById])
+  @@index([createdAt])
+  @@index([deletedAt])
 }
