@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/plasenca-d/nestjs-prisma-pro-starter/compare/v1.4.0...v1.5.0) (2025-08-08)
+
+
+### Features
+
+* configuration prisma 1/2 ([df679ed](https://github.com/plasenca-d/nestjs-prisma-pro-starter/commit/df679edc7ccdf6948cb3ef3a8bbf46649dd2c01f))
+
 # [1.4.0](https://github.com/plasenca-d/nestjs-prisma-pro-starter/compare/v1.3.0...v1.4.0) (2025-08-07)
 
 
